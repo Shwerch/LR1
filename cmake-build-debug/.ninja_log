@@ -1,0 +1,13 @@
+# ninja log v6
+7	790	7837098588206621	CMakeFiles/LR1.dir/main.cpp.obj.ddi	9b6aba7ceff2bf45
+791	893	7837098596969189	CMakeFiles/LR1.dir/CXX.dd	d5d167e0994a648f
+791	893	7837098596969189	C:/Users/ULTRA/Documents/GitHub/LR1/cmake-build-debug/CMakeFiles/LR1.dir/CXXModules.json	d5d167e0994a648f
+791	893	7837098596969189	CMakeFiles/LR1.dir/main.cpp.obj.modmap	d5d167e0994a648f
+907	4487	7837098597204451	CMakeFiles/LR1.dir/main.cpp.obj	b252de27bc62337d
+4488	5312	7837098633014091	LR1.exe	5d7a9530c6331a1a
+8	899	7837119369287771	CMakeFiles/LR1.dir/main.cpp.obj.ddi	9b6aba7ceff2bf45
+900	1105	7837119378219166	CMakeFiles/LR1.dir/CXX.dd	d5d167e0994a648f
+900	1105	7837119378219166	C:/Users/ULTRA/Documents/GitHub/LR1/cmake-build-debug/CMakeFiles/LR1.dir/CXXModules.json	d5d167e0994a648f
+900	1105	7837119378219166	CMakeFiles/LR1.dir/main.cpp.obj.modmap	d5d167e0994a648f
+1109	5580	7837119380297815	CMakeFiles/LR1.dir/main.cpp.obj	b252de27bc62337d
+5580	6230	7837119425016869	LR1.exe	5d7a9530c6331a1a

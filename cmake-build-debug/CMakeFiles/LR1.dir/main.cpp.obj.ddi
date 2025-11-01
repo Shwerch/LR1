@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\LR1.dir\\main.cpp.obj",
+            "outputs": [
+                "C:\\Users\\ULTRA\\Documents\\GitHub\\LR1\\cmake-build-debug\\vc140.pdb",
+                "CMakeFiles\\LR1.dir\\main.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}
