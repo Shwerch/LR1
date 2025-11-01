@@ -66,109 +66,109 @@ build CMakeFiles\LR1.dir\main.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\tree.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\tree.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\tree.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\tree.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\tree.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\tree.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\tree.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\tree.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\tree.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\tree.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\tree.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\tree.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\tree.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\tree.cpp | CMakeFiles\LR1.dir\tree.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\tree.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\tree.cpp | CMakeFiles\LR1.dir\src\tree.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\tree.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\tree.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\queue.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\queue.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\queue.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\queue.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\queue.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\queue.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\queue.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\queue.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\queue.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\queue.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\queue.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\queue.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\queue.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\queue.cpp | CMakeFiles\LR1.dir\queue.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\queue.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\queue.cpp | CMakeFiles\LR1.dir\src\queue.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\queue.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\queue.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\doubly_list.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\doubly_list.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\doubly_list.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\doubly_list.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\doubly_list.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\doubly_list.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\doubly_list.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\doubly_list.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\doubly_list.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\doubly_list.cpp | CMakeFiles\LR1.dir\doubly_list.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\doubly_list.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\doubly_list.cpp | CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\doubly_list.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\forward_list.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\forward_list.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\forward_list.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\forward_list.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\forward_list.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\forward_list.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\forward_list.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\forward_list.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\forward_list.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\forward_list.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\forward_list.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\forward_list.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\forward_list.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\forward_list.cpp | CMakeFiles\LR1.dir\forward_list.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\forward_list.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\forward_list.cpp | CMakeFiles\LR1.dir\src\forward_list.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\forward_list.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\forward_list.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\stack.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\stack.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\stack.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\stack.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\stack.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\stack.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\stack.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\stack.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\stack.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\stack.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\stack.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\stack.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\stack.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\stack.cpp | CMakeFiles\LR1.dir\stack.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\stack.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\stack.cpp | CMakeFiles\LR1.dir\src\stack.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\stack.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\stack.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\array.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\array.cpp || cmake_object_order_depends_target_LR1
-  DEP_FILE = CMakeFiles\LR1.dir\array.cpp.obj.ddi.d
-  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\array.cpp.obj.ddi
+build CMakeFiles\LR1.dir\src\array.cpp.obj.ddi: CXX_SCAN__LR1_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\array.cpp || cmake_object_order_depends_target_LR1
+  DEP_FILE = CMakeFiles\LR1.dir\src\array.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\LR1.dir\src\array.cpp.obj.ddi
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
-  OBJ_FILE = CMakeFiles\LR1.dir\array.cpp.obj
-  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\array.cpp.obj.ddi.i
+  OBJ_FILE = CMakeFiles\LR1.dir\src\array.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\LR1.dir\src\array.cpp.obj.ddi.i
 
-build CMakeFiles\LR1.dir\array.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\array.cpp | CMakeFiles\LR1.dir\array.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
+build CMakeFiles\LR1.dir\src\array.cpp.obj: CXX_COMPILER__LR1_scanned_Debug C$:\Users\ULTRA\Documents\GitHub\LR1\src\array.cpp | CMakeFiles\LR1.dir\src\array.cpp.obj.modmap || cmake_object_order_depends_target_LR1 CMakeFiles\LR1.dir\CXX.dd
   CONFIG = Debug
-  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\array.cpp.obj.modmap
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\LR1.dir\src\array.cpp.obj.modmap
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -std:c++latest -MDd -RTC1 -Zi /utf-8
   OBJECT_DIR = CMakeFiles\LR1.dir
-  OBJECT_FILE_DIR = CMakeFiles\LR1.dir
+  OBJECT_FILE_DIR = CMakeFiles\LR1.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\LR1.dir\
   TARGET_PDB = LR1.pdb
   dyndep = CMakeFiles/LR1.dir/CXX.dd
 
-build CMakeFiles\LR1.dir\CXX.dd | C$:\Users\ULTRA\Documents\GitHub\LR1\cmake-build-debug\CMakeFiles\LR1.dir\CXXModules.json CMakeFiles\LR1.dir\main.cpp.obj.modmap CMakeFiles\LR1.dir\tree.cpp.obj.modmap CMakeFiles\LR1.dir\queue.cpp.obj.modmap CMakeFiles\LR1.dir\doubly_list.cpp.obj.modmap CMakeFiles\LR1.dir\forward_list.cpp.obj.modmap CMakeFiles\LR1.dir\stack.cpp.obj.modmap CMakeFiles\LR1.dir\array.cpp.obj.modmap: CXX_DYNDEP__LR1_Debug CMakeFiles\LR1.dir\main.cpp.obj.ddi CMakeFiles\LR1.dir\tree.cpp.obj.ddi CMakeFiles\LR1.dir\queue.cpp.obj.ddi CMakeFiles\LR1.dir\doubly_list.cpp.obj.ddi CMakeFiles\LR1.dir\forward_list.cpp.obj.ddi CMakeFiles\LR1.dir\stack.cpp.obj.ddi CMakeFiles\LR1.dir\array.cpp.obj.ddi | C$:\Users\ULTRA\Documents\GitHub\LR1\cmake-build-debug\CMakeFiles\LR1.dir\CXXDependInfo.json
+build CMakeFiles\LR1.dir\CXX.dd | C$:\Users\ULTRA\Documents\GitHub\LR1\cmake-build-debug\CMakeFiles\LR1.dir\CXXModules.json CMakeFiles\LR1.dir\main.cpp.obj.modmap CMakeFiles\LR1.dir\src\tree.cpp.obj.modmap CMakeFiles\LR1.dir\src\queue.cpp.obj.modmap CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.modmap CMakeFiles\LR1.dir\src\forward_list.cpp.obj.modmap CMakeFiles\LR1.dir\src\stack.cpp.obj.modmap CMakeFiles\LR1.dir\src\array.cpp.obj.modmap: CXX_DYNDEP__LR1_Debug CMakeFiles\LR1.dir\main.cpp.obj.ddi CMakeFiles\LR1.dir\src\tree.cpp.obj.ddi CMakeFiles\LR1.dir\src\queue.cpp.obj.ddi CMakeFiles\LR1.dir\src\doubly_list.cpp.obj.ddi CMakeFiles\LR1.dir\src\forward_list.cpp.obj.ddi CMakeFiles\LR1.dir\src\stack.cpp.obj.ddi CMakeFiles\LR1.dir\src\array.cpp.obj.ddi | C$:\Users\ULTRA\Documents\GitHub\LR1\cmake-build-debug\CMakeFiles\LR1.dir\CXXDependInfo.json
 
 
 # =============================================================================
@@ -178,7 +178,7 @@ build CMakeFiles\LR1.dir\CXX.dd | C$:\Users\ULTRA\Documents\GitHub\LR1\cmake-bui
 #############################################
 # Link the executable LR1.exe
 
-build LR1.exe: CXX_EXECUTABLE_LINKER__LR1_Debug CMakeFiles\LR1.dir\main.cpp.obj CMakeFiles\LR1.dir\tree.cpp.obj CMakeFiles\LR1.dir\queue.cpp.obj CMakeFiles\LR1.dir\doubly_list.cpp.obj CMakeFiles\LR1.dir\forward_list.cpp.obj CMakeFiles\LR1.dir\stack.cpp.obj CMakeFiles\LR1.dir\array.cpp.obj
+build LR1.exe: CXX_EXECUTABLE_LINKER__LR1_Debug CMakeFiles\LR1.dir\main.cpp.obj CMakeFiles\LR1.dir\src\tree.cpp.obj CMakeFiles\LR1.dir\src\queue.cpp.obj CMakeFiles\LR1.dir\src\doubly_list.cpp.obj CMakeFiles\LR1.dir\src\forward_list.cpp.obj CMakeFiles\LR1.dir\src\stack.cpp.obj CMakeFiles\LR1.dir\src\array.cpp.obj
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od -MDd -RTC1 -Zi
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console

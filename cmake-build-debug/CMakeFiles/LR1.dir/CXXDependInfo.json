@@ -18,40 +18,40 @@
 	"module-dir" : "C:/Users/ULTRA/Documents/GitHub/LR1/cmake-build-debug/CMakeFiles/LR1.dir",
 	"sources" : 
 	{
-		"CMakeFiles/LR1.dir/array.cpp.obj" : 
-		{
-			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/array.cpp"
-		},
-		"CMakeFiles/LR1.dir/doubly_list.cpp.obj" : 
-		{
-			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/doubly_list.cpp"
-		},
-		"CMakeFiles/LR1.dir/forward_list.cpp.obj" : 
-		{
-			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/forward_list.cpp"
-		},
 		"CMakeFiles/LR1.dir/main.cpp.obj" : 
 		{
 			"language" : "CXX",
 			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/main.cpp"
 		},
-		"CMakeFiles/LR1.dir/queue.cpp.obj" : 
+		"CMakeFiles/LR1.dir/src/array.cpp.obj" : 
 		{
 			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/queue.cpp"
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/array.cpp"
 		},
-		"CMakeFiles/LR1.dir/stack.cpp.obj" : 
+		"CMakeFiles/LR1.dir/src/doubly_list.cpp.obj" : 
 		{
 			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/stack.cpp"
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/doubly_list.cpp"
 		},
-		"CMakeFiles/LR1.dir/tree.cpp.obj" : 
+		"CMakeFiles/LR1.dir/src/forward_list.cpp.obj" : 
 		{
 			"language" : "CXX",
-			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/tree.cpp"
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/forward_list.cpp"
+		},
+		"CMakeFiles/LR1.dir/src/queue.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/queue.cpp"
+		},
+		"CMakeFiles/LR1.dir/src/stack.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/stack.cpp"
+		},
+		"CMakeFiles/LR1.dir/src/tree.cpp.obj" : 
+		{
+			"language" : "CXX",
+			"source" : "C:/Users/ULTRA/Documents/GitHub/LR1/src/tree.cpp"
 		}
 	}
 }

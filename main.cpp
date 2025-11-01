@@ -1,9 +1,9 @@
-#include "array.h"
-#include "stack.h"
-#include "forward_list.h"
-#include "doubly_list.h"
-#include "queue.h"
-#include "tree.h"
+#include "src/array.h"
+#include "src/stack.h"
+#include "src/forward_list.h"
+#include "src/doubly_list.h"
+#include "src/queue.h"
+#include "src/tree.h"
 
 #include <iostream>
 #include <fstream>

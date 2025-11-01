@@ -11,15 +11,15 @@ else()
 endif()
 
 add_executable(LR1 main.cpp
-        tree.cpp
-        tree.h
-        queue.cpp
-        queue.h
-        doubly_list.cpp
-        doubly_list.h
-        forward_list.cpp
-        forward_list.h
-        stack.cpp
-        stack.h
-        array.cpp
-        array.h)
+        src/tree.cpp
+        src/tree.h
+        src/queue.cpp
+        src/queue.h
+        src/doubly_list.cpp
+        src/doubly_list.h
+        src/forward_list.cpp
+        src/forward_list.h
+        src/stack.cpp
+        src/stack.h
+        src/array.cpp
+        src/array.h)
