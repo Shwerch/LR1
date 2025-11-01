@@ -10,4 +10,16 @@ if(MSVC)
 else()
 endif()
 
-add_executable(LR1 main.cpp)
+add_executable(LR1 main.cpp
+        tree.cpp
+        tree.h
+        queue.cpp
+        queue.h
+        doubly_list.cpp
+        doubly_list.h
+        forward_list.cpp
+        forward_list.h
+        stack.cpp
+        stack.h
+        array.cpp
+        array.h)
