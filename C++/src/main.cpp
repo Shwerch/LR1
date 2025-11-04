@@ -12,7 +12,7 @@
 
 bool contains_only_digits(const char* value) {
     if (value == nullptr || *value == '\0') {
-        return false; 
+        return false;
     }
     for (int i = 0; value[i] != '\0'; ++i) {
         if (!std::isdigit(static_cast<unsigned char>(value[i]))) {
@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
 
     const char* filename = argv[1];
     const char* command = argv[2];
-    
-    if (std::strcmp(command, "PRINT") && !contains_only_digits(argv[3])) {
+
+    if (std::strcmp(command, "PRINT") && argc >= 4 && !contains_only_digits(argv[3])) {
         std::cerr << "Argument contains a non-number character" << std::endl;
         return 1;
     }
@@ -41,15 +41,15 @@ int main(int argc, char* argv[]) {
         arr.init();
         arr.load(filename);
 
-        if (strcmp(command, "MPUSH") == 0 && argc >= 4) {
+        if (std::strcmp(command, "MPUSH") == 0 && argc >= 4) {
             arr.push(atoi(argv[3]));
             arr.save(filename);
-        } else if (strcmp(command, "MDEL") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "MDEL") == 0 && argc >= 4) {
             arr.del(atoi(argv[3]));
             arr.save(filename);
-        } else if (strcmp(command, "MGET") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "MGET") == 0 && argc >= 4) {
             std::cout << arr.get(atoi(argv[3])) << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             arr.print();
         }
 
@@ -59,16 +59,16 @@ int main(int argc, char* argv[]) {
         s.init();
         s.load(filename);
 
-        if (strcmp(command, "SPUSH") == 0 && argc >= 4) {
+        if (std::strcmp(command, "SPUSH") == 0 && argc >= 4) {
             s.push(atoi(argv[3]));
             s.save(filename);
-        } else if (strcmp(command, "SPOP") == 0) {
+        } else if (std::strcmp(command, "SPOP") == 0) {
             int value = s.pop();
             std::cout << value << std::endl;
             s.save(filename);
-        } else if (strcmp(command, "SPEEK") == 0) {
+        } else if (std::strcmp(command, "SPEEK") == 0) {
             std::cout << s.peek() << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             s.print();
         }
 
@@ -78,15 +78,36 @@ int main(int argc, char* argv[]) {
         list.init();
         list.load(filename);
 
-        if (strcmp(command, "FPUSH") == 0 && argc >= 4) {
-            list.push(atoi(argv[3]));
+        if (std::strcmp(command, "FPUSH_FRONT") == 0 && argc >= 4) {
+            list.push_front(atoi(argv[3]));
             list.save(filename);
-        } else if (strcmp(command, "FDEL") == 0 && argc >= 4) {
-            list.del(atoi(argv[3]));
+        } else if (std::strcmp(command, "FPUSH_BACK") == 0 && argc >= 4) {
+            list.push_back(atoi(argv[3]));
             list.save(filename);
-        } else if (strcmp(command, "FGET") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "FDEL_FIRST") == 0) {
+            list.del_first();
+            list.save(filename);
+        } else if (std::strcmp(command, "FDEL_LAST") == 0) {
+            list.del_last();
+            list.save(filename);
+        } else if (std::strcmp(command, "FDEL_PREV") == 0 && argc >= 4) {
+            list.del_prev(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "FDEL_AT") == 0 && argc >= 4) {
+            list.del_at(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "FDEL_NEXT") == 0 && argc >= 4) {
+            list.del_next(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "FINSERT_PREV") == 0 && argc >= 5) {
+            list.insert_prev(atoi(argv[3]), atoi(argv[4]));
+            list.save(filename);
+        } else if (std::strcmp(command, "FINSERT_NEXT") == 0 && argc >= 5) {
+            list.insert_next(atoi(argv[3]), atoi(argv[4]));
+            list.save(filename);
+        } else if (std::strcmp(command, "FGET") == 0 && argc >= 4) {
             std::cout << list.get(atoi(argv[3])) << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             list.print();
         }
 
@@ -96,15 +117,36 @@ int main(int argc, char* argv[]) {
         list.init();
         list.load(filename);
 
-        if (strcmp(command, "LPUSH") == 0 && argc >= 4) {
-            list.push(atoi(argv[3]));
+        if (std::strcmp(command, "LPUSH_BACK") == 0 && argc >= 4) {
+            list.push_back(atoi(argv[3]));
             list.save(filename);
-        } else if (strcmp(command, "LDEL") == 0 && argc >= 4) {
-            list.del(atoi(argv[3]));
+        } else if (std::strcmp(command, "LPUSH_FRONT") == 0 && argc >= 4) {
+            list.push_front(atoi(argv[3]));
             list.save(filename);
-        } else if (strcmp(command, "LGET") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "LDEL_FIRST") == 0) {
+            list.del_first();
+            list.save(filename);
+        } else if (std::strcmp(command, "LDEL_LAST") == 0) {
+            list.del_last();
+            list.save(filename);
+        } else if (std::strcmp(command, "LDEL_PREV") == 0 && argc >= 4) {
+            list.del_prev(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "LDEL_AT") == 0 && argc >= 4) {
+            list.del_at(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "LDEL_NEXT") == 0 && argc >= 4) {
+            list.del_next(atoi(argv[3]));
+            list.save(filename);
+        } else if (std::strcmp(command, "LINSERT_PREV") == 0 && argc >= 5) {
+            list.insert_prev(atoi(argv[3]), atoi(argv[4]));
+            list.save(filename);
+        } else if (std::strcmp(command, "LINSERT_NEXT") == 0 && argc >= 5) {
+            list.insert_next(atoi(argv[3]), atoi(argv[4]));
+            list.save(filename);
+        } else if (std::strcmp(command, "LGET") == 0 && argc >= 4) {
             std::cout << list.get(atoi(argv[3])) << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             list.print();
         }
 
@@ -114,16 +156,16 @@ int main(int argc, char* argv[]) {
         q.init();
         q.load(filename);
 
-        if (strcmp(command, "QPUSH") == 0 && argc >= 4) {
+        if (std::strcmp(command, "QPUSH") == 0 && argc >= 4) {
             q.push(atoi(argv[3]));
             q.save(filename);
-        } else if (strcmp(command, "QPOP") == 0) {
+        } else if (std::strcmp(command, "QPOP") == 0) {
             int value = q.pop();
             std::cout << value << std::endl;
             q.save(filename);
-        } else if (strcmp(command, "QPEEK") == 0) {
+        } else if (std::strcmp(command, "QPEEK") == 0) {
             std::cout << q.peek() << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             q.print();
         }
 
@@ -133,57 +175,57 @@ int main(int argc, char* argv[]) {
         t.init();
         t.load(filename);
 
-        if (strcmp(command, "TINSERT") == 0 && argc >= 4) {
+        if (std::strcmp(command, "TINSERT") == 0 && argc >= 4) {
             t.insert(atoi(argv[3]));
             t.save(filename);
-        } else if (strcmp(command, "TDEL") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "TDEL") == 0 && argc >= 4) {
             t.del(atoi(argv[3]));
             t.save(filename);
-        } else if (strcmp(command, "TGET") == 0 && argc >= 4) {
+        } else if (std::strcmp(command, "TGET") == 0 && argc >= 4) {
             std::cout << (t.get(atoi(argv[3])) ? "Found" : "Not found") << std::endl;
-        } else if (strcmp(command, "PRINT") == 0) {
+        } else if (std::strcmp(command, "PRINT") == 0) {
             t.print();
         }
 
         t.free();
-    } else if (strcmp(command, "PRINT") == 0) {
+    } else if (std::strcmp(command, "PRINT") == 0) {
         std::ifstream file(filename);
         if (file) {
             char type[20];
             file >> type;
             file.close();
 
-            if (strcmp(type, "ARRAY") == 0) {
+            if (std::strcmp(type, "ARRAY") == 0) {
                 Array arr;
                 arr.init();
                 arr.load(filename);
                 arr.print();
                 arr.free();
-            } else if (strcmp(type, "STACK") == 0) {
+            } else if (std::strcmp(type, "STACK") == 0) {
                 Stack s;
                 s.init();
                 s.load(filename);
                 s.print();
                 s.free();
-            } else if (strcmp(type, "FORWARD") == 0) {
+            } else if (std::strcmp(type, "FORWARD") == 0) {
                 ForwardList list;
                 list.init();
                 list.load(filename);
                 list.print();
                 list.free();
-            } else if (strcmp(type, "DOUBLY") == 0) {
+            } else if (std::strcmp(type, "DOUBLY") == 0) {
                 DoublyList list;
                 list.init();
                 list.load(filename);
                 list.print();
                 list.free();
-            } else if (strcmp(type, "QUEUE") == 0) {
+            } else if (std::strcmp(type, "QUEUE") == 0) {
                 Queue q;
                 q.init();
                 q.load(filename);
                 q.print();
                 q.free();
-            } else if (strcmp(type, "TREE") == 0) {
+            } else if (std::strcmp(type, "TREE") == 0) {
                 Tree t;
                 t.init();
                 t.load(filename);

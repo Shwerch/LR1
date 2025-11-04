@@ -5,166 +5,152 @@
 #include <cstring>
 
 void Tree::init() {
-    root = nullptr;
+    capacity = 16;
     size = 0;
+    data = new int[capacity];
 }
 
-TreeNode* Tree::insertHelper(TreeNode* node, int value) {
-    if (!node) {
-        return new TreeNode{value, nullptr, nullptr};
-    }
-    
-    if (value < node->value) {
-        node->left = insertHelper(node->left, value);
-    } else if (value > node->value) {
-        node->right = insertHelper(node->right, value);
-    }
-    
-    return node;
+void Tree::resize() {
+    size_t newcap = capacity ? capacity * 2 : 16;
+    int* nd = new int[newcap];
+    for (size_t i = 0; i < size; ++i) nd[i] = data[i];
+    delete[] data;
+    data = nd;
+    capacity = newcap;
 }
 
 void Tree::insert(int value) {
-    root = insertHelper(root, value);
-    size++;
+    if (size >= capacity) resize();
+    data[size++] = value;
 }
 
-TreeNode* Tree::findMin(TreeNode* node) {
-    while (node->left) {
-        node = node->left;
-    }
-    return node;
-}
-
-TreeNode* Tree::deleteHelper(TreeNode* node, int value, bool& deleted) {
-    if (!node) return nullptr;
-    
-    if (value < node->value) {
-        node->left = deleteHelper(node->left, value, deleted);
-    } else if (value > node->value) {
-        node->right = deleteHelper(node->right, value, deleted);
-    } else {
-        deleted = true;
-        
-        if (!node->left && !node->right) {
-            delete node;
-            return nullptr;
-        } else if (!node->left) {
-            TreeNode* temp = node->right;
-            delete node;
-            return temp;
-        } else if (!node->right) {
-            TreeNode* temp = node->left;
-            delete node;
-            return temp;
-        } else {
-            TreeNode* temp = findMin(node->right);
-            node->value = temp->value;
-            node->right = deleteHelper(node->right, temp->value, deleted);
-            deleted = false;
-        }
-    }
-    
-    return node;
+int Tree::index_of(int value) const {
+    for (size_t i = 0; i < size; ++i) if (data[i] == value) return static_cast<int>(i);
+    return -1;
 }
 
 void Tree::del(int value) {
-    bool deleted = false;
-    root = deleteHelper(root, value, deleted);
-    if (deleted) size--;
-}
-
-bool Tree::searchHelper(TreeNode* node, int value) const {
-    if (!node) return false;
-    if (node->value == value) return true;
-    if (value < node->value) return searchHelper(node->left, value);
-    return searchHelper(node->right, value);
+    int idx = index_of(value);
+    if (idx < 0) return;
+    if (size == 0) return;
+    data[idx] = data[size - 1];
+    --size;
 }
 
 bool Tree::get(int value) const {
-    return searchHelper(root, value);
+    return index_of(value) >= 0;
 }
 
-void Tree::freeHelper(TreeNode* node) {
-    if (!node) return;
-    freeHelper(node->left);
-    freeHelper(node->right);
-    delete node;
-}
-
-void Tree::free() {
-    freeHelper(root);
-    root = nullptr;
-    size = 0;
-}
-
-int Tree::getHeight(TreeNode* node) const {
-    if (!node) return 0;
-    int leftHeight = getHeight(node->left);
-    int rightHeight = getHeight(node->right);
-    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
-}
-
-void Tree::printLevel(TreeNode* node, int level, int indent, int spacing) const {
-    if (level == 1) {
-        for (int i = 0; i < indent; i++) std::cout << " ";
-        if (node) {
-            std::cout << node->value;
-        } else {
-            std::cout << " ";
-        }
-        for (int i = 0; i < spacing; i++) std::cout << " ";
-    } else if (level > 1) {
-        printLevel(node ? node->left : nullptr, level - 1, indent, spacing);
-        printLevel(node ? node->right : nullptr, level - 1, indent, spacing);
-    }
+int Tree::height() const {
+    if (size == 0) return 0;
+    int h = 0;
+    size_t nodes = 1;
+    while (nodes <= size) { ++h; nodes <<= 1; }
+    return h;
 }
 
 void Tree::print() const {
     std::cout << "Tree (size=" << size << "):\n";
-    if (!root) {
+    if (size == 0) {
         std::cout << "Empty tree\n";
         return;
     }
-    
-    int height = getHeight(root);
-    int maxWidth = (1 << height) - 1;
-    
-    for (int level = 1; level <= height; level++) {
-        int numNodes = 1 << (level - 1);
-        int spacing = (maxWidth / numNodes) - 1;
-        int indent = (maxWidth - (numNodes + (numNodes - 1) * spacing)) / 2;
-        
-        printLevel(root, level, indent, spacing);
-        std::cout << "\n";
+
+    int h = height();
+    int maxNodes = (1 << h) - 1;
+    if (maxNodes < 1) maxNodes = 1;
+
+    char** slots = new char*[maxNodes];
+    for (int i = 0; i < maxNodes; ++i) slots[i] = nullptr;
+
+    int maxLen = 1;
+    for (size_t i = 0; i < size; ++i) {
+        char tmp[32];
+        int len = std::snprintf(tmp, sizeof(tmp), "%d", data[i]);
+        if (len > maxLen) maxLen = len;
+        if (static_cast<int>(i) < maxNodes) {
+            slots[i] = new char[len + 1];
+            std::memcpy(slots[i], tmp, len + 1);
+        }
     }
+
+    int cellWidth = maxLen + 2;
+    if (cellWidth < 1) cellWidth = 1;
+
+    for (int level = 0; level < h; ++level) {
+        int nodesThisLevel = 1 << level;
+        int firstIndex = (1 << level) - 1;
+
+        int segment = 1 << (h - level);
+        int segmentWidth = segment * cellWidth;
+
+        int leading = segmentWidth / 2 - (cellWidth / 2);
+        if (leading < 0) leading = 0;
+        int between = segmentWidth - cellWidth;
+        if (between < 0) between = 0;
+
+        for (int i = 0; i < leading; ++i) std::cout << ' ';
+
+        for (int n = 0; n < nodesThisLevel; ++n) {
+            int idx = firstIndex + n;
+            const char* s = nullptr;
+            if (idx < maxNodes && slots[idx]) s = slots[idx];
+
+            int slen = 0;
+            if (s) {
+                const char* p = s;
+                while (*p) { ++slen; ++p; }
+            }
+
+            int padTotal = cellWidth - slen;
+            if (padTotal < 0) padTotal = 0;
+            int padLeft = padTotal / 2;
+            int padRight = padTotal - padLeft;
+
+            for (int i = 0; i < padLeft; ++i) std::cout << ' ';
+            if (s) std::cout << s; else {
+                for (int i = 0; i < slen; ++i) std::cout << ' ';
+            }
+            for (int i = 0; i < padRight; ++i) std::cout << ' ';
+
+            if (n < nodesThisLevel - 1) {
+                for (int i = 0; i < between; ++i) std::cout << ' ';
+            }
+        }
+        std::cout << '\n';
+    }
+
+    for (int i = 0; i < maxNodes; ++i) {
+        if (slots[i]) delete[] slots[i];
+    }
+    delete[] slots;
 }
 
-void Tree::saveHelper(std::ofstream& file, TreeNode* node) const {
-    if (!node) return;
-    file << node->value << "\n";
-    saveHelper(file, node->left);
-    saveHelper(file, node->right);
-}
 
 void Tree::save(const char* filename) const {
     std::ofstream file(filename);
     file << "TREE\n" << size << "\n";
-    saveHelper(file, root);
+    for (size_t i = 0; i < size; ++i) file << data[i] << "\n";
 }
 
 void Tree::load(const char* filename) {
     std::ifstream file(filename);
     if (!file) return;
-    
     char type[20];
     file >> type;
-    if (strcmp(type, "TREE") != 0) return;
-    
+    if (std::strcmp(type, "TREE") != 0) return;
     size_t sz;
     file >> sz;
-    for (size_t i = 0; i < sz; i++) {
-        int value;
-        file >> value;
-        insert(value);
+    for (size_t i = 0; i < sz; ++i) {
+        int v;
+        file >> v;
+        insert(v);
     }
+}
+
+void Tree::free() {
+    delete[] data;
+    data = nullptr;
+    size = 0;
+    capacity = 0;
 }
