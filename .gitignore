@@ -1,5 +1,7 @@
 program
 *.txt
+target
+Cargo.lock
 
 # Prerequisites
 *.d
