@@ -1,4 +1,4 @@
-#include "../doubly_list.h"
+#include "doubly_list.h"
 
 #include <iostream>
 #include <fstream>

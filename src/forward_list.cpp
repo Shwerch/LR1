@@ -1,4 +1,4 @@
-#include "../forward_list.h"
+#include "forward_list.h"
 
 #include <iostream>
 #include <fstream>

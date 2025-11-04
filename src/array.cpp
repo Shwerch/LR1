@@ -1,7 +1,8 @@
-#include "../array.h"
+#include "array.h"
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 void Array::init() {
     capacity = 10;

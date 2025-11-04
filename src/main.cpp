@@ -1,23 +1,40 @@
-#include "src/array.h"
-#include "src/stack.h"
-#include "src/forward_list.h"
-#include "src/doubly_list.h"
-#include "src/queue.h"
-#include "src/tree.h"
+#include "array.h"
+#include "stack.h"
+#include "forward_list.h"
+#include "doubly_list.h"
+#include "queue.h"
+#include "tree.h"
 
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <cstdlib>
 
+bool contains_only_digits(const char* value) {
+    if (value == nullptr || *value == '\0') {
+        return false; 
+    }
+    for (int i = 0; value[i] != '\0'; ++i) {
+        if (!std::isdigit(static_cast<unsigned char>(value[i]))) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main(int argc, char* argv[]) {
     if (argc < 3) {
-        std::cout << "Usage: program <filename> <command> [args...]\n";
+        std::cerr << "Usage: program <filename> <command> [args...]" << std::endl;
         return 1;
     }
 
     const char* filename = argv[1];
     const char* command = argv[2];
+    
+    if (std::strcmp(command, "PRINT") && !contains_only_digits(argv[3])) {
+        std::cerr << "Argument contains a non-number character" << std::endl;
+        return 1;
+    }
 
     if (command[0] == 'M') {
         Array arr;
