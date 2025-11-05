@@ -1,5 +1,4 @@
 program
-*.txt
 target
 Cargo.lock
 
