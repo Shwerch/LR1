@@ -1,6 +1,9 @@
 program
+
 target
 Cargo.lock
+
+.idea
 
 # Prerequisites
 *.d

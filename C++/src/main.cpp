@@ -14,7 +14,7 @@ bool contains_only_digits(const char* value) {
     if (value == nullptr || *value == '\0') {
         return false;
     }
-    for (int i = 0; value[i] != '\0'; ++i) {
+    for (int i = (value[0] == '-' ? 1 : 0); value[i] != '\0'; ++i) {
         if (!std::isdigit(static_cast<unsigned char>(value[i]))) {
             return false;
         }
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
     const char* filename = argv[1];
     const char* command = argv[2];
 
-    if (std::strcmp(command, "PRINT") && argc >= 4 && !contains_only_digits(argv[3])) {
+    if (argc >= 4 && !contains_only_digits(argv[3])) {
         std::cerr << "Argument contains a non-number character" << std::endl;
         return 1;
     }
@@ -49,8 +49,6 @@ int main(int argc, char* argv[]) {
             arr.save(filename);
         } else if (std::strcmp(command, "MGET") == 0 && argc >= 4) {
             std::cout << arr.get(atoi(argv[3])) << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            arr.print();
         }
 
         arr.free();
@@ -68,8 +66,6 @@ int main(int argc, char* argv[]) {
             s.save(filename);
         } else if (std::strcmp(command, "SPEEK") == 0) {
             std::cout << s.peek() << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            s.print();
         }
 
         s.free();
@@ -107,8 +103,6 @@ int main(int argc, char* argv[]) {
             list.save(filename);
         } else if (std::strcmp(command, "FGET") == 0 && argc >= 4) {
             std::cout << list.get(atoi(argv[3])) << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            list.print();
         }
 
         list.free();
@@ -146,8 +140,6 @@ int main(int argc, char* argv[]) {
             list.save(filename);
         } else if (std::strcmp(command, "LGET") == 0 && argc >= 4) {
             std::cout << list.get(atoi(argv[3])) << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            list.print();
         }
 
         list.free();
@@ -165,8 +157,6 @@ int main(int argc, char* argv[]) {
             q.save(filename);
         } else if (std::strcmp(command, "QPEEK") == 0) {
             std::cout << q.peek() << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            q.print();
         }
 
         q.free();
@@ -183,8 +173,6 @@ int main(int argc, char* argv[]) {
             t.save(filename);
         } else if (std::strcmp(command, "TGET") == 0 && argc >= 4) {
             std::cout << (t.get(atoi(argv[3])) ? "Found" : "Not found") << std::endl;
-        } else if (std::strcmp(command, "PRINT") == 0) {
-            t.print();
         }
 
         t.free();
