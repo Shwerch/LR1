@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/program.dir/link.d CMakeFiles/program.dir/src/main.cpp.o CMakeFiles/program.dir/src/tree.cpp.o CMakeFiles/program.dir/src/queue.cpp.o CMakeFiles/program.dir/src/doubly_list.cpp.o CMakeFiles/program.dir/src/forward_list.cpp.o CMakeFiles/program.dir/src/stack.cpp.o CMakeFiles/program.dir/src/array.cpp.o -o program
