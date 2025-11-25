@@ -3,6 +3,8 @@ program
 target
 Cargo.lock
 
+CMakeLists.txt
+
 .idea
 
 # Prerequisites

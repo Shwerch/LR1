@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -O3 -std=c++23 -pedantic -Wall -Wextra -Werror -Iinclude
-SOURCES = src/main.cpp src/tree.cpp src/queue.cpp src/doubly_list.cpp src/forward_list.cpp src/stack.cpp src/array.cpp
+SOURCES = src/main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 EXECUTABLE = program
 
@@ -11,6 +11,9 @@ $(EXECUTABLE): $(OBJECTS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+run:
+	./$(EXECUTABLE)
 
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
