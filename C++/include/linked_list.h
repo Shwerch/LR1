@@ -31,67 +31,68 @@ public:
         }
     }
 
-    // Конструктор копирования
     LinkedList(const LinkedList& other) : Base(other) {
+        if (other.head_ == nullptr) {
+            return;
+        }
 
+        head_ = new Node<T>(other.head_->value);
+        Node<T>* current_new = head_;
+        Node<T>* current_old = other.head_->next;
+
+        while (current_old != nullptr) {
+            current_new->next = new Node<T>(current_old->value);
+            current_new = current_new->next;
+            current_old = current_old->next;
+        }
+
+        size_ = other.size_;
     }
 
-    // Оператор присваивания копированием
-    LinkedList& operator=(const LinkedList& other) {
-        return *this;
+    LinkedList(LinkedList&& other) noexcept
+            : Base(std::move(other)), head_(other.head_), size_(other.size_)
+    {
+        other.head_ = nullptr;
+        other.size_ = 0;
     }
 
-    // Конструктор перемещения
-    LinkedList(LinkedList&& other) noexcept {
-
-    }
-
-    // Оператор присваивания перемещением
-    LinkedList& operator=(LinkedList&& other) noexcept {
-        return *this;
+    size_t size() const {
+        return size_;
     }
 
     void push_before(const T& value, const T& new_value) {
-        if (head_ == nullptr) {
-            throw std::runtime_error("Cannot push before empty list");
-        }
         Node<T>* prev_node = nullptr;
         Node<T>* current_node = head_;
-        while (current_node->value != value) {
-            if (current_node->next == nullptr) {
-                throw std::runtime_error("Element not found");
-            }
+        while (current_node != nullptr && current_node->value != value) {
             prev_node = current_node;
             current_node = current_node->next;
         }
-
+        if (current_node == nullptr) {
+            throw std::runtime_error("Element not found");
+        }
         Node<T>* new_node = new Node(new_value);
         if (prev_node == nullptr) {
+            new_node->next = head_;
             head_ = new_node;
-            head_->next = current_node;
         } else {
             prev_node->next = new_node;
             new_node->next = current_node;
         }
+        ++size_;
     }
 
     void push_after(const T& value, const T& new_value) {
-        if (head_ == nullptr) {
-            throw std::runtime_error("Cannot push before empty list");
-        }
         Node<T>* current_node = head_;
-        while (current_node->value != value) {
-            if (current_node->next == nullptr) {
-                throw std::runtime_error("Element not found");
-            }
+        while (current_node != nullptr && current_node->value != value) {
             current_node = current_node->next;
         }
-
-        Node<T>* new_node = new Node(new_value);
-        if (current_node->next != nullptr) {
-            new_node->next = current_node->next;
+        if (current_node == nullptr) {
+            throw std::runtime_error("Element not found");
         }
+        Node<T>* new_node = new Node(new_value);
+        new_node->next = current_node->next;
         current_node->next = new_node;
+        ++size_;
     }
 
     void push_head(const T& new_value) {
@@ -100,6 +101,7 @@ public:
             new_node->next = head_;
         }
         head_ = new_node;
+        ++size_;
     }
 
     void push_tail(const T& new_value) {
@@ -113,17 +115,18 @@ public:
             }
             current_node->next = new_node;
         }
+        ++size_;
     }
 
-    T& get_head() const {
-        if (head_ == nullptr) {
+    const Node<T>* get_head() const {
+        if (size_ == 0) {
             throw std::runtime_error("Cannot get head from empty list");
         }
-        return head_->value;
+        return head_;
     }
 
-    T& get_tail() const {
-        if (head_ == nullptr) {
+    const T& get_tail() const {
+        if (size_ == 0) {
             throw std::runtime_error("Cannot get tail from empty list");
         }
         Node<T>* current_node = head_;
@@ -134,17 +137,14 @@ public:
     }
 
     void remove(const T& value) {
-        if (head_ == nullptr) {
-            throw std::runtime_error("Cannot push before empty list");
-        }
         Node<T>* prev_node = nullptr;
         Node<T>* current_node = head_;
-        while (current_node->value != value) {
-            if (current_node->next == nullptr) {
-                throw std::runtime_error("Element not found");
-            }
+        while (current_node != nullptr && current_node->value != value) {
             prev_node = current_node;
             current_node = current_node->next;
+        }
+        if (current_node == nullptr) {
+            throw std::runtime_error("Element not found");
         }
         if (prev_node == nullptr) {
             Node<T>* node_to_delete = head_;
@@ -154,25 +154,23 @@ public:
             prev_node->next = current_node->next;
             delete current_node;
         }
+        --size_;
     }
 
     void remove_before(const T& value) {
-        if (head_ == nullptr || head_->next == nullptr) {
-            throw std::runtime_error("Cannot remove before the head");
+        if (head_ == nullptr || head_->next == nullptr || head_->value == value) {
+            throw std::runtime_error("Cannot remove element before list head or list is too small");
         }
         Node<T>* prev_prev_node = nullptr;
         Node<T>* prev_node = head_;
         Node<T>* current_node = head_->next;
-        if (prev_node->value == value) {
-            throw std::runtime_error("Cannot remove before the head");
-        }
-        while (current_node->value != value) {
-            if (current_node->next == nullptr) {
-                throw std::runtime_error("Element with given value not found");
-            }
+        while (current_node != nullptr && current_node->value != value) {
             prev_prev_node = prev_node;
             prev_node = current_node;
             current_node = current_node->next;
+        }
+        if (current_node == nullptr) {
+            throw std::runtime_error("Element with given value not found");
         }
         if (prev_prev_node == nullptr) {
             head_ = current_node;
@@ -180,71 +178,69 @@ public:
             prev_prev_node->next = current_node;
         }
         delete prev_node;
+        --size_;
     }
 
     bool contains(const T& value) {
-        if (head_ == nullptr) {
-            throw std::runtime_error("Cannot push before empty list");
-        }
         Node<T>* current_node = head_;
-        while (current_node->value != value) {
-            if (current_node->next == nullptr) {
-                return false;
+        while (current_node != nullptr) {
+            if (current_node->value == value) {
+                return true;
             }
             current_node = current_node->next;
         }
-        return true;
+        return false;
     }
 
 };
 
 template<typename T>
-struct ArrayHelper final : Helper {
-
-    static Array<T>* cast(Base* b) {
-        auto* ptr = dynamic_cast<Array<T>*>(b);
+struct LinkedListHelper final : Helper {
+private:
+    static LinkedList<T>* cast(Base* b) {
+        auto* ptr = dynamic_cast<LinkedList<T>*>(b);
         if (!ptr) {
-            throw std::runtime_error("Invalid Base type for ArrayHelper");
+            throw std::runtime_error("Invalid Base type for LinkedListHelper");
         }
         return ptr;
     }
 
-    static const Array<T>* cast(const Base& b) {
-        auto* ptr = dynamic_cast<const Array<T>*>(&b);
+    static const LinkedList<T>* cast(const Base& b) {
+        auto* ptr = dynamic_cast<const LinkedList<T>*>(&b);
         if (!ptr) {
-            throw std::runtime_error("Invalid Base type for ArrayHelper");
+            throw std::runtime_error("Invalid Base type for LinkedListHelper");
         }
         return ptr;
     }
-
+public:
     void print(const Base& data) override {
-        const Array<T>* arr = cast(data);
+        const LinkedList<T>* list = cast(data);
 
-        std::cout << "ARRAY (size = " << arr->size() << "):";
-        for (size_t i = 0; i < arr->size(); i++) {
-            std::cout << " " << (*arr).get(i);
+        std::cout << "LINKED_LIST (size = " << list->size() << "):";
+        for (const Node<T>* node = list->get_head(); node != nullptr; node = node->next) {
+            std::cout << " " << node->value;
         }
         std::cout << std::endl;
     }
 
     void save(const char* filename, const Base& data) override {
-        const Array<T>* arr = cast(data);
+        const LinkedList<T>* list = cast(data);
 
         std::ofstream out(filename);
         if (!out.is_open()) {
             throw std::runtime_error("Failed to open file for saving");
         }
 
-        out << "ARRAY" << std::endl;
-        out << arr->size() << std::endl;
-        for (size_t i = 0; i < arr->size(); i++) {
-            out << (*arr).get(i) << std::endl;
+        out << "LINKED_LIST" << std::endl;
+        out << list->size() << std::endl;
+        for (const Node<T>* node = list->get_head(); node != nullptr; node = node->next) {
+            out << node->value << std::endl;
         }
         out.close();
     }
 
     void load(const char* filename, Base* data) override {
-        Array<T>* arr = cast(data);
+        LinkedList<T>* list = cast(data);
 
         std::ifstream in(filename);
         if (!in.is_open()) {
@@ -253,7 +249,7 @@ struct ArrayHelper final : Helper {
 
         char header[64];
         in.getline(header, 64);
-        if ((in.fail() && !in.eof()) || std::strcmp(header, "ARRAY") != 0 ) {
+        if ((in.fail() && !in.eof()) || std::strcmp(header, "LINKED_LIST") != 0 ) {
             throw std::runtime_error("Invalid file format");
         }
 
@@ -262,14 +258,12 @@ struct ArrayHelper final : Helper {
             throw std::runtime_error("File ended prematurely or invalid data format during size read");
         }
 
-        arr->set_size(n);
-
         for (size_t i = 0; i < n; i++) {
             T value;
             if (!(in >> value)) {
                 throw std::runtime_error("File ended prematurely or invalid data format during element read");
             }
-            arr->get_data()[i] = value;
+            list->push_tail(value);
         }
     }
 };

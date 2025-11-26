@@ -26,7 +26,6 @@ public:
         delete[] buffer_;
     }
 
-    // Конструктор копирования
     Array(const Array& other) : Base(other) {
         if (other.capacity_ > 0) {
             T* new_buf = new T[other.capacity_];
@@ -41,18 +40,6 @@ public:
         capacity_ = other.capacity_;
     }
 
-    // Оператор присваивания копированием
-    Array& operator=(const Array& other) {
-        if (this != &other) {
-            Array temp(other);
-            std::swap(buffer_, temp.buffer_);
-            std::swap(size_, temp.size_);
-            std::swap(capacity_, temp.capacity_);
-        }
-        return *this;
-    }
-
-    // Конструктор перемещения
     Array(Array&& other) noexcept : Base(std::move(other)),
         buffer_(other.buffer_),
         size_(other.size_),
@@ -61,22 +48,6 @@ public:
         other.buffer_ = nullptr;
         other.size_ = 0;
         other.capacity_ = 0;
-    }
-
-    // Оператор присваивания перемещением
-    Array& operator=(Array&& other) noexcept {
-        if (this != &other) {
-            delete[] buffer_;
-
-            buffer_ = other.buffer_;
-            size_ = other.size_;
-            capacity_ = other.capacity_;
-
-            other.buffer_ = nullptr;
-            other.size_ = 0;
-            other.capacity_ = 0;
-        }
-        return *this;
     }
 
     const T& get(size_t index) const {
@@ -151,7 +122,7 @@ public:
 
 template<typename T>
 struct ArrayHelper final : Helper {
-
+private:
     static Array<T>* cast(Base* b) {
         auto* ptr = dynamic_cast<Array<T>*>(b);
         if (!ptr) {
@@ -167,7 +138,7 @@ struct ArrayHelper final : Helper {
         }
         return ptr;
     }
-
+public:
     void print(const Base& data) override {
         const Array<T>* arr = cast(data);
 

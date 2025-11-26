@@ -1,19 +1,15 @@
 #include "array.h"
+#include "linked_list.h"
 
 int main(/*int argc, char* argv[]*/) {
-    Array<uint64_t> array1 = Array<uint64_t>(1);
-    array1.push_back(12);
-    array1.push_back(24);
-    ArrayHelper<uint64_t> helper;
-    helper.save("pizdec.txt", array1);
-
-    Array<uint64_t> array2;
-    helper.load("pizdec.txt", &array2);
-
-    helper.print(array2);
-
-    const auto array3 = array2;
-    helper.print(array2);
-    helper.print(array3);
+    auto list = LinkedList<uint64_t>();
+    list.push_tail(12);
+    list.push_tail(13);
+    list.push_after(12, 222);
+    auto helper = LinkedListHelper<uint64_t>();
+    helper.save("pizdec.txt", list);
+    auto list2 = LinkedList<uint64_t>();
+    helper.load("pizdec.txt", &list2);
+    helper.print(list2);
     return 0;
 }
