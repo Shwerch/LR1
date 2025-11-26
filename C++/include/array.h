@@ -6,6 +6,8 @@
 #include <fstream>
 #include <cstring>
 
+#define CHECK(index) if ((index) >= sz) { throw std::out_of_range("Index out of range"); }
+
 template<typename T>
 struct Array final : Base {
 private:
@@ -17,33 +19,23 @@ public:
     Array() = default;
 
     explicit Array(size_t initial_capacity) {
-        if (initial_capacity > 0) {
-            cap = initial_capacity * 2;
-            sz = initial_capacity;
-            buffer = new T[cap];
-        } else {
-            cap = 0;
-            sz = 0;
-            buffer = nullptr;
-        }
+        cap = initial_capacity * 2;
+        sz = initial_capacity;
+        buffer = initial_capacity > 0 ? new T[initial_capacity] : nullptr;
     }
 
     ~Array() override {
         delete[] buffer;
     }
 
-    const T& operator[](size_t index) const {
-        if (index >= sz) {
-            throw std::out_of_range("Index out of range");
-        }
+    T& get(size_t index) const {
+        CHECK(index)
         return buffer[index];
     }
 
-    T& operator[](size_t index) {
-        if (index >= sz) {
-            throw std::out_of_range("Index out of range");
-        }
-        return buffer[index];
+    void replace(size_t index, const T& value) {
+        CHECK(index)
+        buffer[index] = value;
     }
 
     size_t size() const {
@@ -56,11 +48,12 @@ public:
 
     void push_back(const T& value) {
         if (sz >= cap) {
-            size_t new_cap = (cap == 0) ? 1 : cap * 2;
+            size_t new_cap = (cap == 0) ? 2 : cap * 2;
             T* new_buf = new T[new_cap];
 
-            for (size_t i = 0; i < sz; i++)
+            for (size_t i = 0; i < sz; i++) {
                 std::move(buffer, buffer + sz, new_buf);
+            }
 
             delete[] buffer;
             buffer = new_buf;
@@ -71,14 +64,20 @@ public:
 
     void pop_back() {
         if (sz == 0) {
-            throw std::runtime_error("Cannot pop_back from empty array");
+            throw std::runtime_error("Cannot pop back from empty array");
         }
         sz--;
     }
 
-    T* data_ptr() { return buffer; }
-    const T* data_ptr() const { return buffer; }
+    void remove(size_t index) {
+        CHECK(index)
+        for (size_t i = index; i < sz - 2; i++) {
+            buffer[i] = buffer[i + 1];
+        }
+        --sz;
+    }
 
+    T* get_data() { return buffer; }
     void set_size(size_t new_size) {
         if (new_size > cap) {
             T* new_buf = new T[new_size];
@@ -116,7 +115,7 @@ struct ArrayHelper final : Helper {
 
         std::cout << "ARRAY (size = " << arr->size() << "):";
         for (size_t i = 0; i < arr->size(); i++) {
-            std::cout << " " << (*arr)[i];
+            std::cout << " " << (*arr).get(i);
         }
         std::cout << std::endl;
     }
@@ -132,7 +131,7 @@ struct ArrayHelper final : Helper {
         out << "ARRAY\n";
         out << arr->size() << "\n";
         for (size_t i = 0; i < arr->size(); i++) {
-            out << (*arr)[i] << "\n";
+            out << (*arr).get(i) << "\n";
         }
     }
 
@@ -158,7 +157,7 @@ struct ArrayHelper final : Helper {
         for (size_t i = 0; i < n; i++) {
             T value;
             in >> value;
-            arr->data_ptr()[i] = value;
+            arr->get_data()[i] = value;
         }
     }
 };
