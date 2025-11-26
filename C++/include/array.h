@@ -6,88 +6,146 @@
 #include <fstream>
 #include <cstring>
 
-#define CHECK(index) if ((index) >= sz) { throw std::out_of_range("Index out of range"); }
+#define CHECK_RANGE(index) if ((index) >= size_) { throw std::out_of_range("Index out of range"); }
 
 template<typename T>
 struct Array final : Base {
 private:
-    T* buffer = nullptr;
-    size_t sz = 0;
-    size_t cap = 0;
+    T* buffer_ = nullptr;
+    size_t size_ = 0;
+    size_t capacity_ = 0;
 
 public:
     Array() = default;
 
-    explicit Array(size_t initial_capacity) {
-        cap = initial_capacity * 2;
-        sz = initial_capacity;
-        buffer = initial_capacity > 0 ? new T[initial_capacity] : nullptr;
+    explicit Array(size_t count) : size_(count), capacity_(count * 2) {
+        buffer_ = count > 0 ? new T[capacity_] : nullptr;
     }
 
     ~Array() override {
-        delete[] buffer;
+        delete[] buffer_;
     }
 
-    T& get(size_t index) const {
-        CHECK(index)
-        return buffer[index];
+    // Конструктор копирования
+    Array(const Array& other) : Base(other) {
+        if (other.capacity_ > 0) {
+            T* new_buf = new T[other.capacity_];
+            for (size_t i = 0; i < other.size_; ++i) {
+                new_buf[i] = other.buffer_[i];
+            }
+            buffer_ = new_buf;
+        } else {
+            buffer_ = nullptr;
+        }
+        size_ = other.size_;
+        capacity_ = other.capacity_;
+    }
+
+    // Оператор присваивания копированием
+    Array& operator=(const Array& other) {
+        if (this != &other) {
+            Array temp(other);
+            std::swap(buffer_, temp.buffer_);
+            std::swap(size_, temp.size_);
+            std::swap(capacity_, temp.capacity_);
+        }
+        return *this;
+    }
+
+    // Конструктор перемещения
+    Array(Array&& other) noexcept : Base(std::move(other)),
+        buffer_(other.buffer_),
+        size_(other.size_),
+        capacity_(other.capacity_) {
+
+        other.buffer_ = nullptr;
+        other.size_ = 0;
+        other.capacity_ = 0;
+    }
+
+    // Оператор присваивания перемещением
+    Array& operator=(Array&& other) noexcept {
+        if (this != &other) {
+            delete[] buffer_;
+
+            buffer_ = other.buffer_;
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+
+            other.buffer_ = nullptr;
+            other.size_ = 0;
+            other.capacity_ = 0;
+        }
+        return *this;
+    }
+
+    const T& get(size_t index) const {
+        CHECK_RANGE(index)
+        return buffer_[index];
+    }
+
+    T& get(size_t index) {
+        CHECK_RANGE(index)
+        return buffer_[index];
     }
 
     void replace(size_t index, const T& value) {
-        CHECK(index)
-        buffer[index] = value;
+        CHECK_RANGE(index)
+        buffer_[index] = value;
     }
 
     size_t size() const {
-        return sz;
+        return size_;
     }
 
     size_t capacity() const {
-        return cap;
+        return capacity_;
     }
 
     void push_back(const T& value) {
-        if (sz >= cap) {
-            size_t new_cap = (cap == 0) ? 2 : cap * 2;
+        if (size_ >= capacity_) {
+            size_t new_cap = capacity_ == 0 ? 2 : capacity_ * 2;
             T* new_buf = new T[new_cap];
 
-            for (size_t i = 0; i < sz; i++) {
-                std::move(buffer, buffer + sz, new_buf);
+            for (size_t i = 0; i < size_; i++) {
+                new_buf[i] = buffer_[i];
             }
 
-            delete[] buffer;
-            buffer = new_buf;
-            cap = new_cap;
+            delete[] buffer_;
+            buffer_ = new_buf;
+            capacity_ = new_cap;
         }
-        buffer[sz++] = value;
+        buffer_[size_++] = value;
     }
 
     void pop_back() {
-        if (sz == 0) {
+        if (size_ == 0) {
             throw std::runtime_error("Cannot pop back from empty array");
         }
-        sz--;
+        --size_;
     }
 
     void remove(size_t index) {
-        CHECK(index)
-        for (size_t i = index; i < sz - 2; i++) {
-            buffer[i] = buffer[i + 1];
+        CHECK_RANGE(index)
+        for (size_t i = index; i < size_ - 1; i++) {
+            buffer_[i] = buffer_[i + 1];
         }
-        --sz;
+        --size_;
     }
 
-    T* get_data() { return buffer; }
+    T* get_data() const { return buffer_; }
+
     void set_size(size_t new_size) {
-        if (new_size > cap) {
+        if (new_size > capacity_) {
             T* new_buf = new T[new_size];
-            for (size_t i = 0; i < sz; i++)
-                new_buf[i] = buffer[i];
-            delete[] buffer;
-            buffer = new_buf;
-            cap = new_size;
+            for (size_t i = 0; i < size_; i++) {
+                new_buf[i] = buffer_[i];
+            }
+            delete[] buffer_;
+            buffer_ = new_buf;
+            capacity_ = new_size;
         }
-        sz = new_size;
+        size_ = new_size;
     }
 };
 
@@ -128,11 +186,12 @@ struct ArrayHelper final : Helper {
             throw std::runtime_error("Failed to open file for saving");
         }
 
-        out << "ARRAY\n";
-        out << arr->size() << "\n";
+        out << "ARRAY" << std::endl;
+        out << arr->size() << std::endl;
         for (size_t i = 0; i < arr->size(); i++) {
-            out << (*arr).get(i) << "\n";
+            out << (*arr).get(i) << std::endl;
         }
+        out.close();
     }
 
     void load(const char* filename, Base* data) override {
@@ -150,13 +209,17 @@ struct ArrayHelper final : Helper {
         }
 
         size_t n;
-        in >> n;
+        if (!(in >> n)) {
+            throw std::runtime_error("File ended prematurely or invalid data format during size read");
+        }
 
         arr->set_size(n);
 
         for (size_t i = 0; i < n; i++) {
             T value;
-            in >> value;
+            if (!(in >> value)) {
+                throw std::runtime_error("File ended prematurely or invalid data format during element read");
+            }
             arr->get_data()[i] = value;
         }
     }
